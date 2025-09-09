@@ -9,141 +9,784 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles/output.css"/>
-    <title>Cardapio</title>
+    <title>M3 ENERGIZA</title>
 
 </head>
 <body>
    <!--header-->
- <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
+ <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg center bg-fixed">
     <div class="w-full h-full flex flex-col justify-center items-center">
-        <img src="Assets/restaurante.png" alt="Casa do Norte" class="w-32 h-32 rounded-full hover:scale-110 duration-200"/>
-        <h1 class="text-4xl mt-4 mb-2 font-bold text-yellow-600">Casa do Norte</h1>
-        <span class="text-2xl text-yellow-600 font-black">São Paulo - SP</span>
+        <img src="Assets/Raio.webp" alt="M3 ENERGIZA" class="w-32 h-32 rounded-full hover:scale-110 duration-200"/>
+        <h1 class="text-4xl mt-4 mb-2 font-bold text-black">M3 ENERGIZA</h1>
+        <span class="text-2xl text-black font-black">São Paulo - SP</span>
+        <h1 class="text-4xl md:text-5xl font-bold">Bem-vindo ao Nosso Site</h1>
+    <p class="mt-4 text-lg md:text-xl max-w-2xl">
+      Aqui você encontra os melhores serviços de instalação elétrica com qualidade e segurança.
+    </p>
     </div>
 </header>
     <!--fim header-->
 
-    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Conheça nosso menu</h2>
+     <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Orçamento de mão de obra<h2>
+  <h4 class="text-1xl md:text-2xl font-bold text-center mt-6 mb-2">Faça seu orçamento e envie via watzapp, retornaremos o contato em seguida</h3>
 
-    <!--Inicio Menu-->
-<div id="menu">
-    <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
-    <!-- Item 1 -->
-        <div class="flex gap-2 w-full">
-            <img src="./Assets/carne-de-sol.jpg" alt="Sabor do nordeste" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-            <div class="w-full">
-                <p class="font-bold">Sabor do nordeste</p>
-                <p class="text-sm">Carne bolvina com temperos naturais</p>
-                <div class="flex items-center justify-between mt-3">
-                    <p class="font-bold text-lg">R$ 21.50</p>
-                    <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Sabor do nordeste" data-price="21.50">
-                        <i class="fa fa-cart-plus text-lg text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Item 2 -->
-        <div class="flex gap-2 w-full">
-            <img src="./Assets/carne-de-sol.jpg" alt="Carne bolvina acebolada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-            <div class="w-full">
-                <p class="font-bold">Carne bolvina acebolada</p>
-                <p class="text-sm">Carne bolvina com temperos naturais</p>
-                <div class="flex items-center justify-between mt-3">
-                    <p class="font-bold text-lg">R$ 23.50</p>
-                    <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Carne bolvina acebolada" data-price="23.50">
-                        <i class="fa fa-cart-plus text-lg text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Item 3 -->
-        <div class="flex gap-2 w-full">
-            <img src="./Assets/carne-de-sol.jpg" alt="Prato do dia" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-            <div class="w-full">
-                <p class="font-bold">Prato do dia</p>
-                <p class="text-sm">Carne bolvina com temperos naturais</p>
-                <div class="flex items-center justify-between mt-3">
-                    <p class="font-bold text-lg">R$ 23.50</p>
-                    <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Prato do dia" data-price="23.50">
-                        <i class="fa fa-cart-plus text-lg text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Item 4 -->
-        <div class="flex gap-2 w-full">
-            <img src="./Assets/carne-de-sol.jpg" alt="Especialidade da casa" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-            <div class="w-full">
-                <p class="font-bold">Especialidade da casa</p>
-                <p class="text-sm">Carne bolvina com temperos naturais</p>
-                <div class="flex items-center justify-between mt-3">
-                    <p class="font-bold text-lg">R$ 23.50</p>
-                    <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Especialidade da casa" data-price="23.50">
-                        <i class="fa fa-cart-plus text-lg text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-   </main>
-    <div class="mx-auto max-w-7xl px-2 my-2">
-        <h2 class="font-bold text-3xl">Bebidas</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
-            <!-- Item Bebida 1 -->
-            <div class="flex gap-2 w-full">
-                <img src="./Assets/Coca cola.jpeg" alt="Coca lata" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-                <div class="w-full">
-                    <p class="font-bold">Coca lata</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <p class="font-bold text-lg">R$ 6.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Coca cola" data-price="6.00">
-                            <i class="fa fa-cart-plus text-lg text-white"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- Item Bebida 2 -->
-            <div class="flex gap-2 w-full">
-                <img src="./Assets/Coca cola.jpeg" alt="Coca lata" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150"/>
-                <div class="w-full">
-                    <p class="font-bold">Coca Zero</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <p class="font-bold text-lg">R$ 6.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Coca Zero" data-price="6.00">
-                            <i class="fa fa-cart-plus text-lg text-white"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div> 
+  <!-- Menu de Itens -->
+  <div id="lista" class="max-w-7xl px-2 mx-auto mb-16">
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
+
+<!-- Item 1 -->
+<div class="flex gap-2 w-full">
+  <img src="./Assets/Fios eletricos.jpeg" alt="fio de bitola 1,5mm" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+  <div class="w-full">
+    <p class="font-bold">Instalação de fio por metro</p>
+    <div class="flex items-center justify-between mt-3">
+      <p class="font-bold text-lg">R$ 10.00</p>
+      <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens1-error">Digite quantidade/p>
+      </div>
+      <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Passagem de fio por metro" data-price="10.00">
+        <i class="fa fa-cart-plus text-lg text-white"></i>
+      </button>
     </div>
-    <!--Fim Menu-->
-
-    <!--MODAL CART-->
-    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
-        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
-            <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
-            <div id="cart-itens" class="flex justify-between mb-2 flex-col"></div>
-            <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
-            <p class="font-bold mt-4">Nome</p>
-            <input type="text" id="name" placeholder="Digite seu nome..." class="w-full border-2 p-1 rounded my-1"/>
-            <p class="text-red-500 hidden" id="name-warn">Digite seu nome</p>
-            <div class="flex items-center justify-between mt-5 w-full">
-                <button id="close-modal-btn">Fechar</button>
-                <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded">Finalizar Pedido</button>
-            </div>
+  </div>
+</div>
+      <!-- Item 2 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/DISJUNTOR-DIN-BIPOLAR.png" alt="disjuntor bipolar" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instalação de disjuntor bipolar</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 50.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens2-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="disjuntor bipolar" data-price="50.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
         </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/disjuntor_din_monopolar.jpg" alt="disjuntor monopolar" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de disjuntor-monopolar</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens3-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="disjuntor-monopolar" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/quadro de distribuiçao.jpg" alt="Especialidade da casa" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de qadro de distribuição completo</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 300.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens4-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Quadro de distribuição completo" data-price="300.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 5 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Tomada unica.webp" alt="Tomada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de tomada simples</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens5-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tomada simples" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Lampada.jpeg" alt="Lampada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de ponto de inluminação</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens6-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Lâmpada" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  <!-- Item 7 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Tomada dupla.jpeg" alt="Tomada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de tomada dupla</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 40.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens7-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tomada dupla" data-price="40.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 8 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/DR.jpg" alt="DR" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Istalaçao de DR</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 50.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens8-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="DR" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 9 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/DPS.jpg" alt="DPS" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de DPS monopolar</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 40.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens9-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="DPS monopolar"data-price="40.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 10 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Pulsador-Campainha.webp" alt="Pulsador-Campainha" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de pulsador</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens10-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pulsador-Campainha" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 11 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/campainha.jpg" alt="campainha" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold"></p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens11-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn"data-name="campainha" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 12 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Refletor.jpeg" alt="Refletor" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de refletor</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 70.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens12-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Refletor" data-price="70.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 13 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Sensor de presença.jpeg" alt="Sensor de presença" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de sensor de presença</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens13-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Sensor de presença" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 14 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Sensor foto celula.webp" alt="Sensor fotocelula" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de sensor fotocelula</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens14-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Sensor fotocelula" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 15 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Interruptor simples.jpeg" alt="Interruptor simples" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de interruptor simples</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens15-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Interruptor simples" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 16 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Interruptor duplo.webp" alt="Interruptor com 2 comandos" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de interruptor com 2 comandos</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 40.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens16-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Interruptor com 2 comandos" data-price="40.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 17 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Interruptor com 3 comandos.webp" alt="Interruptor com 3 comandos" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de interruptor com 3 comandos</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 50.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens17-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Interruptor com 3 comandos" data-price="50.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 18 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Interruptor com 2 comandos e tomada.webp" alt="Interruptor com 2 comandos e tomada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Interruptor com 2 comandos e tomada</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 50.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens18-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Interruptor com 2 comandos e tomada" data-price="50.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 19 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Interruptor de um comando e tomada.webp" alt="Interruptor de um comando e tomada" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de interruptor de um comando e tomada</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 40.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens19-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Interruptor de um comando e tomada" data-price="40.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <h2 class="text-2xl md:text-3xl font-bold text-center mt-10 mb-7">Orçamento para instalação de infra estrutura elétrica</h2>
+  <h4 class="text-1xl md:text-2xl font-bold text-center mt-6 mb-2">Faça seu orçamento e envie via watzapp, retornaremos o contato em seguida</h3>
+
+  <!-- Menu de Itens -->
+  <div id="menu" class="max-w-7xl px-2 mx-auto mb-16">
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
+
+      <!-- Item 1 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/eletroduto de aço corrugado.webp" alt="eletroduto flexivel sanfonizado emaço inox" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de eletroduto flexivel sanfonizado emaço inox</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais1-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="eletroduto flexivel sanfonizado emaço inox" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Eletroduto flexivel.jpg" alt="Eletroduto flexivel" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de eletroduto flexivel</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais2-error">Digite quantidade</p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Eletroduto flexivel" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Eletroduto de PVC.jpeg" alt="Eletroduto de PVC" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de eletroduto de PVC</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais3-error">Digite quantidade</p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Eletroduto de PVC" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 4 -->
+      
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Eletroduto-galvanizado.jpg" alt="Eletroduto-galvanizado" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de eletroduto-galvanizado</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais4-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Eletroduto-galvanizado" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 5 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Eletrocalhas-em-aco.jpg" alt="Eletrocalhas" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de eletrocalhas</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd metros</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais4-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Eletrocalhas" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 6 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Acessorios para a fixação de eletrocalhas.jpg" alt="Acessorios para a fixação de eletrocalha" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de acessorios para a fixação de eletrocalha</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 10.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais5-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Acessorios para a fixação de eletrocalha" data-price="10.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 7 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Conexoes-eletrodutos-galvanizados.jpg" alt="Conexoes de eletrodutos galvanizados" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de conexoes de eletrodutos galvanizados</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais6-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Conexoes de eletrodutos galvanizados" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 8 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Conexoes de eletrodutos de pvc.jpg" alt="Conexoes de eletrodutos de pvc" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de conexoes de eletrodutos de pvc</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais7-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Conexoes de eletrodutos de pvc" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 9 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Condulete.jpg" alt="Condulete PVC" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de condulete PVC</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 30.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais8-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Eletroduto-galvanizado" data-price="30.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Item 10 -->
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Conduletes.png" alt="Conduletes aço galvanizado" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de conduletes aço galvanizado</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais9-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Conduletes aço galvanizado" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/Caixa de luz octagonal.png" alt="Caixa de luz octagonal" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de caixa de luz octagonal</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 20.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-materiais10-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Caixa de luz octagonal" data-price="20.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL DA LISTA -->
+<div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden items-center justify-center" id="list-modal">
+  <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[80vh] overflow-y-auto">
+    <h2 class="text-center font-bold text-2xl mb-4">Minha lista</h2>
+
+    <!-- LISTA DE ITENS -->
+    <div id="list-items" class="flex flex-col gap-4 mb-4"></div>
+
+    <!-- TOTAL -->
+    <p class="font-bold">Total: <span id="list-total">R$ 0,00</span></p>
+
+    <!-- CAMPO NOME -->
+    <div class="mt-4">
+      <label for="name" class="font-bold block mb-1">Nome</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Digite seu nome..."
+        class="w-full border-2 p-2 rounded"
+      />
+      <p class="text-red-500 text-sm mt-1 hidden" id="name-warn">Digite seu nome</p>
     </div>
-    <!--FIM MODAL CART-->
+      <div class="mt-4">
+      <label for="name" class="font-bold block mb-1">Endereço</label>
+      <input
+        type="text"
+        id="endress"
+        placeholder="Digite o endereço..."
+        class="w-full border-2 p-2 rounded"
+      />
+      <p class="text-red-500 text-sm mt-1 hidden" id="edress-warn">Digite seu endereço</p>
+    </div>
 
-    <!--BUTTON CART FOOTER-->
-    <footer class="w-full bg-red-500 py-2 fixed bottom-0 z-40 flex items-center justify-center">
-        <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
-            (<span id="cart-count">0</span>) veja seu carrinho
-            <i class="fa fa-cart-plus text-lg text-white"></i>
-        </button>
-    </footer>
+    <!-- BOTÕES -->
+    <div class="flex items-center justify-between mt-6">
+      <button id="close-modal-btn" class="text-gray-600 hover:text-black">Fechar</button>
+      <button id="checkout-btn" class="bg-green-500 text-white px-4 py-2 rounded">Enviar orçamento</button>
+    </div>
+  </div>
+</div>
+<!-- BOTÃO FIXO PARA VER A LISTA -->
+<footer class="w-full bg-red-500 py-2 sticky bottom-0 z-20 flex items-center justify-center">
+  <button class="flex items-center gap-2 text-white font-bold" id="list-btn">
+    (<span id="list-count">0</span>) ver lista
+    <i class="fa fa-list text-lg text-white"></i>
+  </button>
+</footer>
 
-    <script src="script.js"></script>
-    
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,9 +1,9 @@
 {
-  "name": "novo-cardapio",
+  "name": "m3-energiza",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "dev": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch"
+  "scripts": 
+    { "dev": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch" 
   },
   "keywords": [],
   "author": "",

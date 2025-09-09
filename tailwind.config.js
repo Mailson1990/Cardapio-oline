@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.(html|js)"],
+  content: ["./*.html", "./**/*.js"],
   theme: {
     extend: {
       backgroundImage: {
-        home: "url('/Assets/Ambiente interno.jpeg')",
+        home: "url('/Assets/M3-ENERGIZA.png')", // sua imagem de fundo
       },
     },
   },
   plugins: [],
-}
+};
