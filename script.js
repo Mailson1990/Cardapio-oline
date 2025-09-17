@@ -7,18 +7,17 @@ const listCount = document.getElementById("list-count");
 const checkoutBtn = document.getElementById("checkout-btn");
 const closeModalBtn = document.getElementById("close-modal-btn");
 const nameInput = document.getElementById("name");
-const endressInput = document.getElementById("endress"); 
+const addressInput = document.getElementById("address");
 const nameWarn = document.getElementById("name-warn");
-const endressWarn = document.getElementById("endress-warn");
+const addressWarn = document.getElementById("address-warn");
 
-let list = [];
-const whatsappNumber = "5511998680448"; // Seu número do WhatsApp
+let list = {}; // carrinho como objeto
+const whatsappNumber = "5511998680448";
 
-// ===== FUNÇÕES DE PERSISTÊNCIA =====
+// ===== PERSISTÊNCIA =====
 function saveList() {
   localStorage.setItem("carrinho", JSON.stringify(list));
 }
-
 function loadList() {
   const saved = localStorage.getItem("carrinho");
   if (saved) {
@@ -27,159 +26,125 @@ function loadList() {
   }
 }
 
-// ===== ABRIR O MODAL =====
+// ===== MODAL =====
 listBtn.addEventListener("click", () => {
   updateListModal();
-  listModal.style.display = "flex";
-});
-
-// ===== FECHAR O MODAL =====
-listModal.addEventListener("click", (event) => {
-  if (event.target === listModal) {
-    listModal.style.display = "none";
-  }
+  listModal.classList.remove("hidden");
+  listModal.classList.add("flex");
 });
 closeModalBtn.addEventListener("click", () => {
-  listModal.style.display = "none";
+  listModal.classList.add("hidden");
+  listModal.classList.remove("flex");
+});
+listModal.addEventListener("click", (e) => {
+  if (e.target === listModal) {
+    listModal.classList.add("hidden");
+    listModal.classList.remove("flex");
+  }
 });
 
+// ===== FUNÇÃO DE DESCONTO PROGRESSIVO =====
+function getDiscountedPrice(basePrice, unitNumber) {
+  if (unitNumber === 1) return basePrice;         // 1ª unidade = preço cheio
+  else if (unitNumber === 2) return basePrice * 0.5; // 2ª unidade = 50%
+  else return basePrice * 0.1;                    // 3ª em diante = 10%
+}
+
 // ===== ADICIONAR ITEM =====
-menu.addEventListener("click", (event) => {
-  const button = event.target.closest(".add-to-cart-btn");
+menu.addEventListener("click", (e) => {
+  const button = e.target.closest(".add-to-cart-btn");
   if (button) {
     const container = button.closest("div");
     const input = container.querySelector("input");
     const error = container.querySelector("p.text-red-500");
-
     const quantity = parseInt(input.value);
 
     if (!input.value || isNaN(quantity) || quantity <= 0) {
       error.classList.remove("hidden");
-    } else {
-      error.classList.add("hidden");
-
-      const name = button.getAttribute("data-name");
-      const price = parseFloat(button.getAttribute("data-price")) || 0;
-      addToList(name, price, quantity);
-
-      input.value = ""; // limpa input
+      return;
     }
+    error.classList.add("hidden");
+
+    const name = button.dataset.name;
+    const basePrice = parseFloat(button.dataset.price) || 0;
+
+    if (!list[name]) list[name] = [];
+
+    for (let i = 0; i < quantity; i++) {
+      const unitNumber = list[name].length + 1;
+      const finalPrice = getDiscountedPrice(basePrice, unitNumber);
+      list[name].push({ name, basePrice, finalPrice });
+    }
+
+    updateListModal();
+    saveList();
+    input.value = "";
   }
 });
 
-// ===== ADICIONAR OU INCREMENTAR =====
-function addToList(name, price, quantity = 1) {
-  const existingItem = list.find(item => item.name === name);
-  if (existingItem) {
-    existingItem.quantity = Math.max(1, existingItem.quantity + quantity);
-  } else {
-    list.push({ name, price, quantity });
-  }
-  updateListModal();
-  saveList();
+// ===== ATUALIZAR TOTAL =====
+function calculateTotal() {
+  return Object.values(list).flat().reduce((sum, item) => sum + item.finalPrice, 0);
 }
 
-// ===== ATUALIZAR LISTA =====
+// ===== ATUALIZAR MODAL =====
 function updateListModal() {
   listItemsContainer.innerHTML = "";
-  let total = 0;
+  const total = calculateTotal();
 
-  list.forEach(item => {
-    const itemElement = document.createElement("div");
-    itemElement.classList.add("flex", "justify-between", "mb-2", "flex-col");
+  Object.keys(list).forEach((name) => {
+    const items = list[name];
+    if (items.length === 0) return;
 
-    itemElement.innerHTML = `
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b pb-2">
-        <div>
-          <p class="font-medium text-lg">${item.name}</p>
-          <p class="text-sm text-gray-600">Preço: R$ ${item.price.toFixed(2)}</p>
-          <p class="text-sm text-gray-600">Subtotal: R$ ${(item.price * item.quantity).toFixed(2)}</p>
-        </div>
-        <div class="flex flex-col items-end md:items-center gap-1">
-          <label class="text-sm text-gray-700">Qtd:</label>
-          <input 
-            type="number" 
-            min="1" 
-            class="w-20 border rounded px-2 py-1 text-center quantidade-input"
-            data-name="${item.name}"
-            value="${item.quantity}"
-          />
-          <button 
-            class="remove-from-list-btn bg-red-500 text-white px-2 py-1 rounded mt-1"
-            data-name="${item.name}">
-            Excluir
-          </button>
-        </div>
+    const subtotal = items.reduce((s, it) => s + it.finalPrice, 0);
+    const div = document.createElement("div");
+    div.className = "flex flex-col md:flex-row md:items-center justify-between gap-2 border-b pb-2 mb-2";
+
+    div.innerHTML = `
+      <div>
+        <p class="font-medium text-lg">${name}</p>
+        <p class="text-sm text-gray-600">Qtd: ${items.length}</p>
+        <p class="text-sm text-gray-600">Subtotal: ${subtotal.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}</p>
       </div>
-    `;
-
-    total += item.price * item.quantity;
-    listItemsContainer.appendChild(itemElement);
+      <div class="flex flex-col items-end md:items-center gap-1">
+        <button class="remove-from-list-btn bg-red-500 text-white px-2 py-1 rounded mt-1" data-name="${name}">Excluir</button>
+      </div>`;
+    listItemsContainer.appendChild(div);
   });
 
-  listTotal.textContent = total.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-
-  const totalQuantity = list.reduce((sum, item) => sum + item.quantity, 0);
-  listCount.textContent = totalQuantity;
+  listTotal.textContent = total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  listCount.textContent = Object.values(list).flat().length;
 }
 
 // ===== REMOVER ITEM =====
-listItemsContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("remove-from-list-btn")) {
-    const name = event.target.getAttribute("data-name");
-    removeItemFromList(name);
+listItemsContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-from-list-btn")) {
+    const name = e.target.dataset.name;
+    delete list[name];
+    updateListModal();
+    saveList();
   }
 });
 
-function removeItemFromList(name) {
-  list = list.filter(item => item.name !== name);
-  updateListModal();
-  saveList();
-}
-
-// ===== ATUALIZAR QUANTIDADE =====
-listItemsContainer.addEventListener("change", (event) => {
-  if (event.target.classList.contains("quantidade-input")) {
-    const name = event.target.getAttribute("data-name");
-    const newQuantity = parseInt(event.target.value);
-
-    const item = list.find(item => item.name === name);
-    if (item) {
-      if (newQuantity >= 1) {
-        item.quantity = newQuantity;
-      } else {
-        removeItemFromList(name); 
-      }
-      updateListModal();
-      saveList();
-    }
-  }
-});
-
-// ===== VALIDAÇÃO DO NOME =====
+// ===== VALIDAÇÃO =====
 nameInput.addEventListener("input", () => {
   if (nameInput.value.trim() !== "") {
     nameInput.classList.remove("border-red-500");
     nameWarn.classList.add("hidden");
   }
 });
-
-// ===== VALIDAÇÃO DO ENDEREÇO =====
-endressInput.addEventListener("input", () => {
-  if (endressInput.value.trim() !== "") {
-    endressInput.classList.remove("border-red-500");
-    endressWarn.classList.add("hidden");
+addressInput.addEventListener("input", () => {
+  if (addressInput.value.trim() !== "") {
+    addressInput.classList.remove("border-red-500");
+    addressWarn.classList.add("hidden");
   }
 });
 
 // ===== ENVIAR PARA WHATSAPP =====
 function enviarListaParaWhatsApp() {
-  if (list.length === 0) {
+  if (Object.values(list).flat().length === 0) {
     alert("Sua lista está vazia.");
-    return false;
+    return;
   }
 
   const nomeCliente = nameInput.value.trim();
@@ -187,48 +152,47 @@ function enviarListaParaWhatsApp() {
     nameWarn.textContent = "Digite um nome com pelo menos 3 caracteres.";
     nameWarn.classList.remove("hidden");
     nameInput.classList.add("border-red-500");
-    return false;
+    return;
   }
 
-  const endereco = endressInput.value.trim();
-  if (endereco === "") {
-    endressInput.classList.add("border-red-500");
-    endressWarn.classList.remove("hidden");
-    return false;
+  const endereco = addressInput.value.trim();
+  if (endereco.length < 5) {
+    addressWarn.textContent = "Digite um endereço válido.";
+    addressWarn.classList.remove("hidden");
+    addressInput.classList.add("border-red-500");
+    return;
   }
 
   let mensagem = `🛒 Pedido de: *${nomeCliente}*\n📍 Endereço: ${endereco}\n\n`;
 
-  list.forEach(item => {
-    mensagem += `• ${item.name} - Qtd: ${item.quantity} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+  Object.keys(list).forEach(name => {
+    const items = list[name];
+    const subtotal = items.reduce((s, it) => s + it.finalPrice, 0);
+    mensagem += `• ${name} - Qtd: ${items.length} - ${subtotal.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}\n`;
   });
 
-  const total = list.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  mensagem += `\n💰 Total: R$ ${total.toFixed(2)}`;
+  const total = calculateTotal();
+  mensagem += `\n💰 Total: ${total.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}`;
 
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
-
-  alert("✅ Pedido enviado para o WhatsApp!");
-  return true;
 }
 
 // ===== FINALIZAR PEDIDO =====
 checkoutBtn.addEventListener("click", () => {
-  if (enviarListaParaWhatsApp()) {
-    // só limpa se enviado com sucesso
-    list = [];
-    nameInput.value = "";
-    endressInput.value = "";
-    listCount.textContent = 0; 
-    updateListModal();
-    saveList();
-    listModal.style.display = "none";
-  }
+  if (Object.values(list).flat().length === 0) return;
+
+  enviarListaParaWhatsApp();
+
+  // Resetar lista e formulário
+  list = {};
+  nameInput.value = "";
+  addressInput.value = "";
+  listCount.textContent = 0; 
+  updateListModal();
+  saveList();
+  listModal.style.display = "none";
 });
 
 // ===== CARREGAR LISTA SALVA =====
 loadList();
-
-
-
