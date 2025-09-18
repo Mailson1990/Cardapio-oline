@@ -10,21 +10,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles/output.css"/>
     <title>M3 ENERGIZA</title>
-
 </head>
 <body>
    <!--header-->
- <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg center bg-fixed">
-    <div class="w-full h-full flex flex-col justify-center items-center">
-        <img src="Assets/Raio.webp" alt="M3 ENERGIZA" class="w-32 h-32 rounded-full hover:scale-110 duration-200"/>
-        <h1 class="text-4xl mt-4 mb-2 font-bold text-black">M3 ENERGIZA</h1>
-        <span class="text-2xl text-black font-black">São Paulo - SP</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-black">Bem-vindo ao Nosso Site</h1>
-    </div>
-</header>
-    <!--fim header-->
-     <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Orçamento de mão de obra<h2>
-  <h4 class="text-1xl md:text-2xl font-bold text-center mt-6 mb-2">Faça seu orçamento e envie via watzapp, retornaremos o contato em seguida</h3>
+   <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center bg-fixed">
+        <div class="w-full h-full flex flex-col justify-center items-center">
+            <img src="Assets/Raio.webp" alt="M3 ENERGIZA" class="w-32 h-32 rounded-full hover:scale-110 duration-200"/>
+            <h1 class="text-4xl mt-4 mb-2 font-bold text-black">M3 ENERGIZA</h1>
+            <span class="text-2xl text-black font-black">São Paulo - SP</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-black">Bem-vindo ao Nosso Site</h2>
+
+            <!-- Botão WhatsApp dentro do header -->
+            <div class="mt-6">
+                <a href="https://wa.me/5511998680448?text=Olá,%20gostaria%20de%20um%20orçamento%20de%20mão%20de%20obra." 
+                   target="_blank"
+                   class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">
+                   <i class="fa-brands fa-whatsapp text-2xl"></i>
+                  WhatsApp
+                </a>
+            </div>
+        </div>
+   </header>
+   <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Orçamento de mão de obra</h2>
+   <h3 class="text-xl md:text-2xl font-bold text-center mt-6 mb-6">
+       Faça seu orçamento e envie via WhatsApp, retornaremos o contato em seguida
+   </h3>
+   </div>
+</body>
+</html>
 
   <!-- Menu de Itens -->
   <div id="lista" class="max-w-7xl px-2 mx-auto mb-16">
@@ -100,11 +113,11 @@
       </div>
       <!-- Item 4 -->
       <div class="flex gap-2 w-full">
-        <img src="./Assets/quadro de distribuiçao.jpg" alt="Especialidade da casa" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <img src="./Assets/Chuveiro eletrico.webp" alt="ducha" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
         <div class="w-full">
-          <p class="font-bold">Instlação de qadro de distribuição completo</p>
+          <p class="font-bold">Instlação de chuveiro</p>
           <div class="flex items-center justify-between mt-3">
-            <p class="font-bold text-lg">R$ 300.00</p>
+            <p class="font-bold text-lg">R$ 100.00</p>
             <div class="mt-4 w-32">
         <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
         <input
@@ -115,7 +128,7 @@
         />
         <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens4-error">Digite quantidade/p>
       </div>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Quadro de distribuição completo" data-price="300.00">
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Chuveiro" data-price="100.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -728,56 +741,78 @@
           </div>
         </div>
       </div>
+      <div class="flex gap-2 w-full">
+        <img src="./Assets/quadro de distribuiçao.jpg" alt="QDC" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-150" />
+        <div class="w-full">
+          <p class="font-bold">Instlação de qadro de distribuição</p>
+          <div class="flex items-center justify-between mt-3">
+            <p class="font-bold text-lg">R$ 150.00</p>
+            <div class="mt-4 w-32">
+        <label for="qtd-fio" class="font-bold block mb-1">Qtd</label>
+        <input
+          type="text"
+          id="qtd-fio"
+          placeholder="Digite a quantidade..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="qtd-itens4-error">Digite quantidade/p>
+      </div>
+            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Quadro de distribuição" data-price="150.00">
+              <i class="fa fa-cart-plus text-lg text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
+   <!-- MODAL DA LISTA -->
+  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden items-center justify-center" id="list-modal">
+    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[80vh] overflow-y-auto">
+      <h2 class="text-center font-bold text-2xl mb-4">Minha lista</h2>
 
-  <!-- MODAL DA LISTA -->
-<div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden items-center justify-center" id="list-modal">
-  <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[80vh] overflow-y-auto">
-    <h2 class="text-center font-bold text-2xl mb-4">Minha lista</h2>
+      <!-- LISTA DE ITENS -->
+      <div id="list-items" class="flex flex-col gap-4 mb-4"></div>
 
-    <!-- LISTA DE ITENS -->
-    <div id="list-items" class="flex flex-col gap-4 mb-4"></div>
+      <!-- TOTAL -->
+      <p class="font-bold">Total: <span id="list-total">R$ 0,00</span></p>
 
-    <!-- TOTAL -->
-    <p class="font-bold">Total: <span id="list-total">R$ 0,00</span></p>
-
-    <!-- CAMPO NOME -->
-    <div class="mt-4">
-      <label for="name" class="font-bold block mb-1">Nome</label>
-      <input
-        type="text"
-        id="name"
-        placeholder="Digite seu nome..."
-        class="w-full border-2 p-2 rounded"
-      />
-      <p class="text-red-500 text-sm mt-1 hidden" id="name-warn">Digite seu nome</p>
-    </div>
+      <!-- CAMPO NOME -->
       <div class="mt-4">
-      <label for="name" class="font-bold block mb-1">Endereço</label>
-      <input
-        type="text"
-        id="address"
-        placeholder="Digite o endereço..."
-        class="w-full border-2 p-2 rounded"
-      />
-      <p class="text-red-500 text-sm mt-1 hidden" id="address-warn">Digite seu endereço</p>
-    </div>
+        <label for="name" class="font-bold block mb-1">Nome</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Digite seu nome..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="name-warn">Digite seu nome</p>
+      </div>
+      <div class="mt-4">
+        <label for="address" class="font-bold block mb-1">Endereço</label>
+        <input
+          type="text"
+          id="address"
+          placeholder="Digite o endereço..."
+          class="w-full border-2 p-2 rounded"
+        />
+        <p class="text-red-500 text-sm mt-1 hidden" id="address-warn">Digite seu endereço</p>
+      </div>
 
-    <!-- BOTÕES -->
-    <div class="flex items-center justify-between mt-6">
-      <button id="close-modal-btn" class="text-gray-600 hover:text-black">Fechar</button>
-      <button id="checkout-btn" class="bg-green-500 text-white px-4 py-2 rounded">Enviar orçamento</button>
+      <!-- BOTÕES -->
+      <div class="flex items-center justify-between mt-6">
+        <button id="close-modal-btn" class="text-gray-600 hover:text-black">Fechar</button>
+        <button id="checkout-btn" class="bg-green-500 text-white px-4 py-2 rounded">Enviar orçamento</button>
+      </div>
     </div>
   </div>
-</div>
-<!-- BOTÃO FIXO PARA VER A LISTA -->
-<footer class="w-full bg-red-500 py-2 sticky bottom-0 z-20 flex items-center justify-center">
-  <button class="flex items-center gap-2 text-white font-bold" id="list-btn">
-    (<span id="list-count">0</span>) ver lista
-    <i class="fa fa-list text-lg text-white"></i>
-  </button>
-</footer>
+
+  <!-- BOTÃO FIXO PARA VER A LISTA -->
+  <footer class="w-full bg-red-500 py-2 sticky bottom-0 z-20 flex items-center justify-center">
+    <button class="flex items-center gap-2 text-white font-bold" id="list-btn">
+      (<span id="list-count">0</span>) ver lista
+      <i class="fa fa-list text-lg text-white"></i>
+    </button>
+  </footer>
 
   <!-- SCRIPT -->
   <script src="script.js"></script>

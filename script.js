@@ -18,6 +18,7 @@ const whatsappNumber = "5511998680448";
 function saveList() {
   localStorage.setItem("carrinho", JSON.stringify(list));
 }
+
 function loadList() {
   const saved = localStorage.getItem("carrinho");
   if (saved) {
@@ -27,23 +28,24 @@ function loadList() {
 }
 
 // ===== MODAL =====
-listBtn.addEventListener("click", () => {
+function openModal() {
   updateListModal();
   listModal.classList.remove("hidden");
   listModal.classList.add("flex");
-});
-closeModalBtn.addEventListener("click", () => {
+}
+
+function closeModal() {
   listModal.classList.add("hidden");
   listModal.classList.remove("flex");
-});
+}
+
+listBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
 listModal.addEventListener("click", (e) => {
-  if (e.target === listModal) {
-    listModal.classList.add("hidden");
-    listModal.classList.remove("flex");
-  }
+  if (e.target === listModal) closeModal();
 });
 
-// ===== FUNÇÃO DE DESCONTO PROGRESSIVO =====
+// ===== DESCONTO PROGRESSIVO =====
 function getDiscountedPrice(basePrice, unitNumber) {
   if (unitNumber === 1) return basePrice;         // 1ª unidade = preço cheio
   else if (unitNumber === 2) return basePrice * 0.5; // 2ª unidade = 50%
@@ -51,9 +53,11 @@ function getDiscountedPrice(basePrice, unitNumber) {
 }
 
 // ===== ADICIONAR ITEM =====
-menu.addEventListener("click", (e) => {
-  const button = e.target.closest(".add-to-cart-btn");
-  if (button) {
+if (menu) {
+  menu.addEventListener("click", (e) => {
+    const button = e.target.closest(".add-to-cart-btn");
+    if (!button) return;
+
     const container = button.closest("div");
     const input = container.querySelector("input");
     const error = container.querySelector("p.text-red-500");
@@ -79,12 +83,14 @@ menu.addEventListener("click", (e) => {
     updateListModal();
     saveList();
     input.value = "";
-  }
-});
+  });
+}
 
-// ===== ATUALIZAR TOTAL =====
+// ===== CALCULAR TOTAL =====
 function calculateTotal() {
-  return Object.values(list).flat().reduce((sum, item) => sum + item.finalPrice, 0);
+  return Object.values(list)
+    .flat()
+    .reduce((sum, item) => sum + item.finalPrice, 0);
 }
 
 // ===== ATUALIZAR MODAL =====
@@ -97,18 +103,22 @@ function updateListModal() {
     if (items.length === 0) return;
 
     const subtotal = items.reduce((s, it) => s + it.finalPrice, 0);
+
     const div = document.createElement("div");
     div.className = "flex flex-col md:flex-row md:items-center justify-between gap-2 border-b pb-2 mb-2";
 
     div.innerHTML = `
       <div>
         <p class="font-medium text-lg">${name}</p>
-        <p class="text-sm text-gray-600">Qtd: ${items.length}</p>
         <p class="text-sm text-gray-600">Subtotal: ${subtotal.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}</p>
       </div>
-      <div class="flex flex-col items-end md:items-center gap-1">
-        <button class="remove-from-list-btn bg-red-500 text-white px-2 py-1 rounded mt-1" data-name="${name}">Excluir</button>
+      <div class="flex items-center gap-2">
+        <button class="decrease-qty-btn bg-green-500 text-black px-4 py-2 rounded" data-name="${name}">-</button>
+        <span class="px-2 font-bold">${items.length}</span>
+        <button class="increase-qty-btn bg-green-500 text-black px-4 py-2 rounded" data-name="${name}">+</button>
+        <button class="remove-from-list-btn bg-red-500 text-black px-4 py-2 rounded" data-name="${name}">Excluir</button>
       </div>`;
+    
     listItemsContainer.appendChild(div);
   });
 
@@ -116,14 +126,39 @@ function updateListModal() {
   listCount.textContent = Object.values(list).flat().length;
 }
 
-// ===== REMOVER ITEM =====
+// ===== EVENTOS DE BOTÕES DENTRO DO MODAL =====
 listItemsContainer.addEventListener("click", (e) => {
+  const name = e.target.dataset.name;
+  if (!name) return;
+
+  // EXCLUIR PRODUTO
   if (e.target.classList.contains("remove-from-list-btn")) {
-    const name = e.target.dataset.name;
     delete list[name];
-    updateListModal();
-    saveList();
   }
+
+  // DIMINUIR 1 ITEM
+  if (e.target.classList.contains("decrease-qty-btn")) {
+    if (list[name] && list[name].length > 0) {
+      list[name].pop();
+      list[name] = list[name].map((item, index) => {
+        return { ...item, finalPrice: getDiscountedPrice(item.basePrice, index + 1) };
+      });
+      if (list[name].length === 0) delete list[name];
+    }
+  }
+
+  // AUMENTAR 1 ITEM
+  if (e.target.classList.contains("increase-qty-btn")) {
+    if (list[name]) {
+      const item = list[name][0];
+      const unitNumber = list[name].length + 1;
+      const finalPrice = getDiscountedPrice(item.basePrice, unitNumber);
+      list[name].push({ name, basePrice: item.basePrice, finalPrice });
+    }
+  }
+
+  updateListModal();
+  saveList();
 });
 
 // ===== VALIDAÇÃO =====
@@ -133,6 +168,7 @@ nameInput.addEventListener("input", () => {
     nameWarn.classList.add("hidden");
   }
 });
+
 addressInput.addEventListener("input", () => {
   if (addressInput.value.trim() !== "") {
     addressInput.classList.remove("border-red-500");
@@ -144,7 +180,7 @@ addressInput.addEventListener("input", () => {
 function enviarListaParaWhatsApp() {
   if (Object.values(list).flat().length === 0) {
     alert("Sua lista está vazia.");
-    return;
+    return false;
   }
 
   const nomeCliente = nameInput.value.trim();
@@ -152,7 +188,7 @@ function enviarListaParaWhatsApp() {
     nameWarn.textContent = "Digite um nome com pelo menos 3 caracteres.";
     nameWarn.classList.remove("hidden");
     nameInput.classList.add("border-red-500");
-    return;
+    return false;
   }
 
   const endereco = addressInput.value.trim();
@@ -160,12 +196,12 @@ function enviarListaParaWhatsApp() {
     addressWarn.textContent = "Digite um endereço válido.";
     addressWarn.classList.remove("hidden");
     addressInput.classList.add("border-red-500");
-    return;
+    return false;
   }
 
   let mensagem = `🛒 Pedido de: *${nomeCliente}*\n📍 Endereço: ${endereco}\n\n`;
 
-  Object.keys(list).forEach(name => {
+  Object.keys(list).forEach((name) => {
     const items = list[name];
     const subtotal = items.reduce((s, it) => s + it.finalPrice, 0);
     mensagem += `• ${name} - Qtd: ${items.length} - ${subtotal.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}\n`;
@@ -176,22 +212,26 @@ function enviarListaParaWhatsApp() {
 
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
+
+  return true; // envio realizado
 }
 
 // ===== FINALIZAR PEDIDO =====
 checkoutBtn.addEventListener("click", () => {
   if (Object.values(list).flat().length === 0) return;
 
-  enviarListaParaWhatsApp();
+  // Só limpa o carrinho se o envio for realizado
+  const enviado = enviarListaParaWhatsApp();
+  if (!enviado) return;
 
   // Resetar lista e formulário
   list = {};
   nameInput.value = "";
   addressInput.value = "";
-  listCount.textContent = 0; 
+  listCount.textContent = 0;
   updateListModal();
   saveList();
-  listModal.style.display = "none";
+  closeModal();
 });
 
 // ===== CARREGAR LISTA SALVA =====
