@@ -11,6 +11,7 @@ const addressInput = document.getElementById("address");
 const nameWarn = document.getElementById("name-warn");
 const addressWarn = document.getElementById("address-warn");
 
+
 let list = {}; // carrinho como objeto
 const whatsappNumber = "5511998680448";
 
