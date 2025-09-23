@@ -11,9 +11,12 @@ const addressInput = document.getElementById("address");
 const nameWarn = document.getElementById("name-warn");
 const addressWarn = document.getElementById("address-warn");
 
-
 let list = {}; // carrinho como objeto
 const whatsappNumber = "5511998680448";
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
 
 // ===== PERSISTÊNCIA =====
 function saveList() {
@@ -24,6 +27,7 @@ function loadList() {
   const saved = localStorage.getItem("carrinho");
   if (saved) {
     list = JSON.parse(saved);
+    recalculateDiscounts();
     updateListModal();
   }
 }
@@ -46,11 +50,26 @@ listModal.addEventListener("click", (e) => {
   if (e.target === listModal) closeModal();
 });
 
-// ===== DESCONTO PROGRESSIVO =====
-function getDiscountedPrice(basePrice, unitNumber) {
-  if (unitNumber === 1) return basePrice;         // 1ª unidade = preço cheio
-  else if (unitNumber === 2) return basePrice * 0.5; // 2ª unidade = 50%
-  else return basePrice * 0.1;                    // 3ª em diante = 10%
+// Fechar modal com ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+// ===== DESCONTO GLOBAL =====
+function getDiscountedPrice(basePrice, globalUnitNumber) {
+  if (globalUnitNumber === 1) return basePrice;      // 1ª unidade preço cheio
+  else if (globalUnitNumber === 2) return basePrice * 0.5; // 2ª unidade 50%
+  else return basePrice * 0.1;                       // 3ª em diante 10%
+}
+
+// ===== REAPLICAR DESCONTO GLOBAL =====
+function recalculateDiscounts() {
+  let allItems = Object.values(list).flat();
+  let counter = 1;
+  allItems.forEach((item) => {
+    item.finalPrice = getDiscountedPrice(item.basePrice, counter);
+    counter++;
+  });
 }
 
 // ===== ADICIONAR ITEM =====
@@ -76,11 +95,10 @@ if (menu) {
     if (!list[name]) list[name] = [];
 
     for (let i = 0; i < quantity; i++) {
-      const unitNumber = list[name].length + 1;
-      const finalPrice = getDiscountedPrice(basePrice, unitNumber);
-      list[name].push({ name, basePrice, finalPrice });
+      list[name].push({ name, basePrice, finalPrice: basePrice });
     }
 
+    recalculateDiscounts();
     updateListModal();
     saveList();
     input.value = "";
@@ -132,7 +150,7 @@ listItemsContainer.addEventListener("click", (e) => {
   const name = e.target.dataset.name;
   if (!name) return;
 
-  // EXCLUIR PRODUTO
+  // EXCLUIR PRODUTO (todos de uma vez)
   if (e.target.classList.contains("remove-from-list-btn")) {
     delete list[name];
   }
@@ -141,9 +159,6 @@ listItemsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("decrease-qty-btn")) {
     if (list[name] && list[name].length > 0) {
       list[name].pop();
-      list[name] = list[name].map((item, index) => {
-        return { ...item, finalPrice: getDiscountedPrice(item.basePrice, index + 1) };
-      });
       if (list[name].length === 0) delete list[name];
     }
   }
@@ -152,30 +167,44 @@ listItemsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("increase-qty-btn")) {
     if (list[name]) {
       const item = list[name][0];
-      const unitNumber = list[name].length + 1;
-      const finalPrice = getDiscountedPrice(item.basePrice, unitNumber);
-      list[name].push({ name, basePrice: item.basePrice, finalPrice });
+      list[name].push({ name, basePrice: item.basePrice, finalPrice: item.basePrice });
     }
   }
 
+  recalculateDiscounts();
   updateListModal();
   saveList();
 });
 
 // ===== VALIDAÇÃO =====
-nameInput.addEventListener("input", () => {
-  if (nameInput.value.trim() !== "") {
-    nameInput.classList.remove("border-red-500");
-    nameWarn.classList.add("hidden");
-  }
-});
+function validateForm() {
+  let valid = true;
 
-addressInput.addEventListener("input", () => {
-  if (addressInput.value.trim() !== "") {
-    addressInput.classList.remove("border-red-500");
-    addressWarn.classList.add("hidden");
+  if (nameInput.value.trim().length < 3) {
+    nameWarn.textContent = "Digite um nome com pelo menos 3 caracteres.";
+    nameWarn.classList.remove("hidden");
+    nameInput.classList.add("border-red-500");
+    valid = false;
+  } else {
+    nameWarn.classList.add("hidden");
+    nameInput.classList.remove("border-red-500");
   }
-});
+
+  if (addressInput.value.trim().length < 5) {
+    addressWarn.textContent = "Digite um endereço válido.";
+    addressWarn.classList.remove("hidden");
+    addressInput.classList.add("border-red-500");
+    valid = false;
+  } else {
+    addressWarn.classList.add("hidden");
+    addressInput.classList.remove("border-red-500");
+  }
+
+  return valid;
+}
+
+nameInput.addEventListener("input", validateForm);
+addressInput.addEventListener("input", validateForm);
 
 // ===== ENVIAR PARA WHATSAPP =====
 function enviarListaParaWhatsApp() {
@@ -184,21 +213,10 @@ function enviarListaParaWhatsApp() {
     return false;
   }
 
-  const nomeCliente = nameInput.value.trim();
-  if (nomeCliente.length < 3) {
-    nameWarn.textContent = "Digite um nome com pelo menos 3 caracteres.";
-    nameWarn.classList.remove("hidden");
-    nameInput.classList.add("border-red-500");
-    return false;
-  }
+  if (!validateForm()) return false;
 
+  const nomeCliente = nameInput.value.trim();
   const endereco = addressInput.value.trim();
-  if (endereco.length < 5) {
-    addressWarn.textContent = "Digite um endereço válido.";
-    addressWarn.classList.remove("hidden");
-    addressInput.classList.add("border-red-500");
-    return false;
-  }
 
   let mensagem = `🛒 Pedido de: *${nomeCliente}*\n📍 Endereço: ${endereco}\n\n`;
 
@@ -214,18 +232,16 @@ function enviarListaParaWhatsApp() {
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
 
-  return true; // envio realizado
+  return true;
 }
 
 // ===== FINALIZAR PEDIDO =====
 checkoutBtn.addEventListener("click", () => {
   if (Object.values(list).flat().length === 0) return;
 
-  // Só limpa o carrinho se o envio for realizado
   const enviado = enviarListaParaWhatsApp();
   if (!enviado) return;
 
-  // Resetar lista e formulário
   list = {};
   nameInput.value = "";
   addressInput.value = "";
